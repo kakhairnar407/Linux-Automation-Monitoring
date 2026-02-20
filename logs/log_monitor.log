@@ -1,0 +1,4 @@
+----- Log Monitor at 2026-02-20 11:31:55 -----
+Feb 20 10:59:46 localhost kernel: RETBleed: WARNING: Spectre v2 mitigation leaves CPU vulnerable to RETBleed attacks, data leaks possible!
+-------------------------------
+This is a test error
