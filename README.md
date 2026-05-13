@@ -1,11 +1,12 @@
-Linux Automation & Monitoring Suite
+**Linux Automation & Monitoring Suite**
+
 Bash · Cron · Amazon Linux EC2 · DevOps Operations
 
 Automated Linux infrastructure monitoring suite that replaced manual daily checks — running health checks every hour, log monitoring every 30 minutes, and log cleanup weekly, with zero human intervention required.
 
 
 The Problem It Solves
-Manual Linux monitoring is slow, inconsistent, and breaks at 3 AM when no one is watching.
+Manual Linux monitoring is slow, in consistent, and breaks at 3 AM when no one is watching.
 This project automates the 3 most critical daily ops tasks — system health, log error detection, and log cleanup — and schedules them to run continuously on an Amazon Linux EC2 instance using cron jobs.
 Result: overnight infrastructure monitoring with zero on-call trigger required.
 
@@ -60,10 +61,13 @@ crontab -e
 Environment
 
 OS: Amazon Linux EC2
+
 Shell: Bash
+
 Scheduler: Cron
+
 Deployed on: AWS EC2 instance
 
 
 Skills Demonstrated
-AreaDetailBash ScriptingHealth checks, log filtering, automated cleanupCron SchedulingHourly, 30-min, and weekly automated executionLog ManagementError capture, noise filtering, retention policyAWS EC2Deployed and tested on Amazon Linux instanceDevOps MindsetAutomation-first approach to routine ops tasks
+Area DetailBash Scripting Health checks, log filtering, automated cleanup Cron Scheduling Hourly, 30-min, and weekly automated executionLog Management Error capture, noise filtering, retention policy AWS EC2 Deployed and tested on Amazon Linux instance DevOps Mindset Automation-first approach to routine ops tasks
