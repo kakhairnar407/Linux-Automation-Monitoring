@@ -1,57 +1,69 @@
-# Linux Automation & Monitoring Scripts
+Linux Automation & Monitoring Suite
+Bash · Cron · Amazon Linux EC2 · DevOps Operations
 
-**GitHub Repository:** [https://github.com/kakhairnar407/Linux-Automation-Monitoring](https://github.com/kakhairnar407/Linux-Automation-Monitoring)
+Automated Linux infrastructure monitoring suite that replaced manual daily checks — running health checks every hour, log monitoring every 30 minutes, and log cleanup weekly, with zero human intervention required.
 
----
 
-## Project Overview
+The Problem It Solves
+Manual Linux monitoring is slow, inconsistent, and breaks at 3 AM when no one is watching.
+This project automates the 3 most critical daily ops tasks — system health, log error detection, and log cleanup — and schedules them to run continuously on an Amazon Linux EC2 instance using cron jobs.
+Result: overnight infrastructure monitoring with zero on-call trigger required.
 
-This project consists of **Bash scripts** to automate Linux system monitoring, health checks, and log management. It is designed to improve operational efficiency, reduce manual intervention, and strengthen automation practices aligned with **DevOps principles**.  
+Scripts
+1. health_check.sh — System Health Monitor
+Monitors CPU usage, memory consumption, and disk usage every hour.
+Logs all metrics to ~/linux-automation/logs/health_check.log for trend tracking.
+Cron schedule: Every hour 0 * * * *
 
-Scripts are deployed on **Amazon Linux EC2** and use **cron jobs** for automated execution.  
+2. log_monitor.sh — Error Log Scanner
+Scans system logs for errors every 30 minutes.
+Filters out known irrelevant warnings (e.g. RETBleed) to reduce noise.
+Logs only actionable errors to ~/linux-automation/logs/log_monitor.log.
+Cron schedule: Every 30 minutes */30 * * * *
 
----
+3. cleanup_logs.sh — Automated Log Cleanup
+Deletes logs older than 7 days to prevent disk bloat.
+Records every cleanup operation for audit trail.
+Cron schedule: Weekly — Sundays at 2 AM 0 2 * * 0
 
-## Features
-
-- **Health Check Script (`health_check.sh`)**  
-  - Monitors **CPU, memory, and disk usage**.  
-  - Logs metrics to `~/linux-automation/logs/health_check.log`.  
-
-- **Log Monitor Script (`log_monitor.sh`)**  
-  - Monitors system logs for errors.  
-  - Filters irrelevant warnings (e.g., RETBleed).  
-  - Logs filtered errors to `~/linux-automation/logs/log_monitor.log`.  
-
-- **Cleanup Script (`cleanup_logs.sh`)**  
-  - Automatically deletes logs older than 7 days.  
-  - Records cleanup operations in `~/linux-automation/logs/cleanup.log`.  
-
-- **Automation with Cron Jobs**  
-  - Health check: runs **every hour**.  
-  - Log monitor: runs **every 30 minutes**.  
-  - Cleanup: runs **weekly on Sundays at 2 AM**.  
-
----
-
-## Project Structure
+Project Structure
 linux-automation/
 ├── scripts/
-│ ├── health_check.sh
-│ ├── log_monitor.sh
-│ └── cleanup_logs.sh
+│   ├── health_check.sh
+│   ├── log_monitor.sh
+│   └── cleanup_logs.sh
 └── logs/
-├── health_check.log
-├── log_monitor.log
-└── cleanup.log
+    ├── health_check.log
+    ├── log_monitor.log
+    └── cleanup.log
+
+How to Run
+bash# Clone the repo
+git clone https://github.com/kakhairnar407/Linux-Automation-Monitoring.git
+cd Linux-Automation-Monitoring
+
+# Give execute permission
+chmod +x scripts/*.sh
+
+# Run manually
+./scripts/health_check.sh
+./scripts/log_monitor.sh
+./scripts/cleanup_logs.sh
+
+# Set up cron jobs
+crontab -e
+# Add:
+# 0 * * * * ~/linux-automation/scripts/health_check.sh
+# */30 * * * * ~/linux-automation/scripts/log_monitor.sh
+# 0 2 * * 0 ~/linux-automation/scripts/cleanup_logs.sh
+
+Environment
+
+OS: Amazon Linux EC2
+Shell: Bash
+Scheduler: Cron
+Deployed on: AWS EC2 instance
 
 
----
-
-## Skills Demonstrated
-
-- **Linux System Administration** – monitoring CPU, memory, and disk usage  
-- **Bash Scripting** – automation of health checks, log monitoring, and cleanup tasks  
-- **Cron Job Scheduling** – automating scripts to run at regular intervals  
-- **Log Management & Monitoring** – capturing errors and system logs efficiently  
-- **DevOps Principles** – applying automation, monitoring, and operational efficiency best practices  
+Skills Demonstrated
+AreaDetailBash ScriptingHealth checks, log filtering, automated cleanupCron SchedulingHourly, 30-min, and weekly automated executionLog ManagementError capture, noise filtering, retention policyAWS EC2Deployed and tested on Amazon Linux instanceDevOps MindsetAutomation-first approach to routine ops tasks
