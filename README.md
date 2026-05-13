@@ -1,4 +1,4 @@
-**Linux Automation & Monitoring Suite**
+**Linux Automation & Monitoring**
 
 Bash · Cron · Amazon Linux EC2 · DevOps Operations
 
